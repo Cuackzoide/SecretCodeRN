@@ -35,7 +35,7 @@ export default function App() {
       {/* Aquí irá el componente del Selector de Nivel */}
       <Text style={styles.title}>SECRET CODE RN</Text>
       {/* DEBUG: Mostrar estado actual */}
-      <View style={styles.debugContainer}>
+      <View style={styles.controlsContainerContainer}>
         <Text style={styles.debugText}>Nivel: {nivelActual.nombre}</Text>
         <Text style={styles.debugText}>Intentos: {intentosRestantes}</Text>
         
@@ -60,13 +60,29 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#333',
     marginBottom: 20,
+    textShadowColor: '#33CCFF', // El azul neón como sombra
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 8,
   },
-  debugContainer: {
+  controlsContainer: { // <-- USAR ESTE NOMBRE
+      width: '90%', 
+      backgroundColor: '#3a3a3a', 
+      padding: 15,
+      borderRadius: 8,
+      borderWidth: 3,
+      borderColor: '#000', 
       marginBottom: 20,
-      alignItems: 'center',
+      alignItems: 'center', 
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.6,
+      shadowRadius: 5,
+      elevation: 10,
   },
   debugText: {
-      fontSize: 16,
-      color: '#666',
+    fontSize: 16,
+    color: '#33CCFF', // Texto azul neón
+    fontWeight: 'bold',
+    marginVertical: 4,
   }
 });
