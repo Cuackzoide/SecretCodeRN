@@ -32,7 +32,7 @@ export function evaluarIntento(intento, secreto) {
     
     const secretoRestante = [...secreto];
     const intentoRestante = [...intento];
-    }
+    
     // 1. Contar Pines Negros (Posición y Color Correctos)
     for (let i = 0; i < LONGITUD_CODIGO; i++) {
         if (intento[i] === secreto[i]) {
@@ -51,6 +51,6 @@ export function evaluarIntento(intento, secreto) {
             }
         }
     }
-            
     return { negros, blancos };
     }
+}
