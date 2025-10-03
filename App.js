@@ -15,7 +15,7 @@ export default function App() {
   
   // Función de Inicialización del Juego
   const iniciarJuego = (nivel) => {
-    const paleta = NIVELES[nivel].colores;
+  const paleta = NIVELES[nivel].colores;
     
     setNivelActual(NIVELES[nivel]);
     setIntentosRestantes(NIVELES[nivel].intentos);
@@ -35,7 +35,7 @@ export default function App() {
       {/* Aquí irá el componente del Selector de Nivel */}
       <Text style={styles.title}>SECRET CODE RN</Text>
       {/* DEBUG: Mostrar estado actual */}
-      <View style={styles.controlsContainerContainer}>
+      <View style={styles.controlsContainer}>
         <Text style={styles.debugText}>Nivel: {nivelActual.nombre}</Text>
         <Text style={styles.debugText}>Intentos: {intentosRestantes}</Text>
         
@@ -50,8 +50,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Ocupa toda la pantalla
-    backgroundColor: '#f0f0f0', // Fondo claro para el cuerpo
+    flex: 1, 
+    backgroundColor: '#f0f0f0',
     alignItems: 'center',
     paddingTop: 30,
   },
@@ -60,11 +60,11 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#333',
     marginBottom: 20,
-    textShadowColor: '#33CCFF', // El azul neón como sombra
+    textShadowColor: '#33CCFF',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 8,
   },
-  controlsContainer: { // <-- USAR ESTE NOMBRE
+  controlsContainer: {
       width: '90%', 
       backgroundColor: '#3a3a3a', 
       padding: 15,
@@ -81,8 +81,9 @@ const styles = StyleSheet.create({
   },
   debugText: {
     fontSize: 16,
-    color: '#33CCFF', // Texto azul neón
+    color: '#33CCFF',
     fontWeight: 'bold',
     marginVertical: 4,
   }
 });
+
