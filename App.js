@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NIVELES, generarCodigoSecreto } from './src/utils/gameLogic';
 import LevelPicker from './src/components/levelPicker';
+import ColorPalette, { FONDO_OSCURO, FONDO_CLARO, COLOR_NEON } from './src/components/colorPalette';
 
 // Seleccionamos el nivel inicial para cargar el juego
   const NIVEL_INICIAL = NIVELES.FACIL;
@@ -12,14 +13,18 @@ export default function App() {
   const [nivelActual, setNivelActual] = useState(NIVEL_INICIAL);
   const [intentosRestantes, setIntentosRestantes] = useState(NIVEL_INICIAL.intentos);
   const [codigoSecreto, setCodigoSecreto] = useState([]);
+  const [paletaColores, setPaletaColores] = useState([]);
   
   // Función de Inicialización del Juego
-  const iniciarJuego = (nivel) => {
-  const paleta = NIVELES[nivel].colores;
-    
-    setNivelActual(NIVELES[nivel]);
-    setIntentosRestantes(NIVELES[nivel].intentos);
-    setCodigoSecreto(generarCodigoSecreto(paleta));
+  const iniciarJuego = (nivelKey) => {
+  const nivelConfig = NIVELES[nivelKey];
+  const paletaFiltrada = COLORES_DISPONIBLES_BASE.slice(0, nivelConfig.colores); 
+
+  // Actualizamos todos los estados relevantes  
+    setNivelActual(nivelConfig);
+    setIntentosRestantes(nivelConfig.intentos);
+    setPaletaColores(paletaFiltrada);
+    setCodigoSecreto(generarCodigoSecreto(paletaFiltrada));
     setJuegoActivo(true);
   };
   
@@ -46,8 +51,11 @@ export default function App() {
         <Text style={styles.debugText}>Intentos: {intentosRestantes}</Text>
         
       </View>
-      {/* Aquí irá el componente de la Paleta de Colores y Controles */}
-      
+      {/* 3. COMPONENTE PALETA DE COLORES */}
+      <ColorPalette 
+        paleta={paletaColores} // Le pasamos la paleta filtrada del estado
+        onColorSelect={(colorKey) => console.log('Color seleccionado:', colorKey)}
+      />
       {/* Aquí irá el componente del Tablero de Juego (Historial) */}
 
     </View>
