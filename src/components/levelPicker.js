@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // <--- Selector de React Native
 import { NIVELES } from '../utils/gameLogic';

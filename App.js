@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaViewBase } from "react-native";
-import { NIVELES, generarCodigoSecreto } from "./src/utils/gameLogic";
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { NIVELES, generarCodigoSecreto } from './src/utils/gameLogic';
+import LevelPicker from './src/components/levelPicker';
 
 // Seleccionamos el nivel inicial para cargar el juego
   const NIVEL_INICIAL = NIVELES.FACIL;
 
 export default function App() {
-  
   // --- GESTIÓN DEL ESTADO DEL JUEGO ---
   const [juegoActivo, setJuegoActivo] = useState(false);
   const [nivelActual, setNivelActual] = useState(NIVEL_INICIAL);
@@ -25,15 +25,21 @@ export default function App() {
   
   // Inicia el juego automáticamente al cargar la app
   React.useEffect(() => {
-    iniciarJuego('FACIL'); // Puedes cambiar 'FACIL' por otro nivel si lo deseas
-  }, []); // Se ejecuta solo una vez al montar el componente
+    iniciarJuego('FACIL');}, []);
 
   // --- RENDERIZADO DEL COMPONENTE PRINCIPAL ---
-
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Aquí irá el componente del Selector de Nivel */}
-      <Text style={styles.title}>SECRET CODE RN</Text>
+    <View style={styles.container}>
+      {/* 1. COMPONENTE SELECTOR DE NIVEL */}
+        <LevelPicker 
+          nivelActual={nivelActual} // El estado que mantiene la dificultad actual.
+          iniciarJuego={iniciarJuego} // La función que reinicia el juego.
+        />
+      {/* 2. DEBUG: Mostrar el estado de juego bajo el selector */}
+        <Text style={styles.debugText}>Nivel Seleccionado: {nivelActual.nombre}</Text>
+        <Text style={styles.debugText}>Intentos Restantes: {intentosRestantes}</Text>
+        
+        <Text style={styles.title}>SECRET CODE RN</Text>
       {/* DEBUG: Mostrar estado actual */}
       <View style={styles.controlsContainer}>
         <Text style={styles.debugText}>Nivel: {nivelActual.nombre}</Text>
@@ -44,10 +50,9 @@ export default function App() {
       
       {/* Aquí irá el componente del Tablero de Juego (Historial) */}
 
-    </SafeAreaView>
+    </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
@@ -86,4 +91,3 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   }
 });
-
