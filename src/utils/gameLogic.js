@@ -1,5 +1,5 @@
 // 1. CONSTANTES DE CONFIGURACIÓN Y NIVELES.
-export const COLORES_DISPONIBLES_BASE = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+export const COLORES_DISPONIBLES = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 export const MAPA_COLORES = {
     '1': 'red', '2': 'blue', '3': 'green', '4': 'purple', 
     '5': 'orange', '6': 'gray', '7': 'brown', '8': 'black',
@@ -32,7 +32,7 @@ export function evaluarIntento(intento, secreto) {
     
     const secretoRestante = [...secreto];
     const intentoRestante = [...intento];
-    
+
     // 1. Contar Pines Negros (Posición y Color Correctos)
     for (let i = 0; i < LONGITUD_CODIGO; i++) {
         if (intento[i] === secreto[i]) {

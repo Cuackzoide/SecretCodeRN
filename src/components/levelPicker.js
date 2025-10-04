@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // <--- Selector de React Native
 import { NIVELES } from '../utils/gameLogic';
+import { COLOR_NEON, FONDO_CLARO, FONDO_OSCURO } from './colorPalette'
 
 // src/components/LevelPicker.js (continuación)
 
@@ -53,20 +54,19 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     pickerWrapper: {
-        // Contenedor visual del picker
-        backgroundColor: '#444', // Gris oscuro
+        backgroundColor: FONDO_OSCURO,
         borderRadius: 5,
         borderWidth: 2,
         borderColor: '#000',
-        overflow: 'hidden', // Para contener el color de fondo del picker
+        overflow: 'hidden',
     },
     picker: {
-        width: 200, // Ancho fijo para el selector
+        width: 200,
         height: 40,
-        color: '#33CCFF', // Texto de selección en Azul Neón
+        color: COLOR_NEON, 
     },
     pickerItem: {
-        // En Android, este estilo puede ser inconsistente, pero se incluye por si acaso.
+        backgroundColor: FONDO_CLARO,
         color: 'white',
         fontSize: 16,
     }
