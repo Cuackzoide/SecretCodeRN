@@ -6,13 +6,15 @@ import ColorPalette, { FONDO_OSCURO, FONDO_CLARO, COLOR_NEON } from './src/compo
 import GameHistory from './src/components/gameHistory';
 
 // Seleccionamos el nivel inicial para cargar el juego
-  const NIVEL_INICIAL = NIVELES.FACIL;
+  const nivelKey = 'FACIL'; // Cambia a 'MEDIO', 'DIFICIL', 'EXPERTO' para probar otros niveles
+
+// Componente Principal de la App
 
 export default function App() {
     // --- GESTIÓN DEL ESTADO DEL JUEGO ---
   const [juegoActivo, setJuegoActivo] = useState(false);
-  const [nivelActual, setNivelActual] = useState(NIVELES[NIVEL_INICIAL]);
-  const [intentosRestantes, setIntentosRestantes] = useState(NIVELES[NIVEL_INICIAL].intentos);
+  const [nivelActual, setNivelActual] = useState(NIVELES[nivelKey]);
+  const [intentosRestantes, setIntentosRestantes] = useState(NIVELES[nivelKey].intentos);
   const [codigoSecreto, setCodigoSecreto] = useState([]);
   const [paletaColores, setPaletaColores] = useState([]);
   const [historial, setHistorial] = useState([]);
@@ -72,10 +74,10 @@ export default function App() {
       }
   // 6. Resetear intento actual
     setIntentoActual([]);
-    };
-
+  };
+  };  
   // Inicia el juego automáticamente al cargar la app
-  useEffect(() => {iniciarJuego(NIVEL_INICIAL);}, []);
+  useEffect(() => {iniciarJuego(nivelKey);}, []);
 
   // --- RENDERIZADO DEL COMPONENTE PRINCIPAL ---
   return (
@@ -125,7 +127,6 @@ export default function App() {
   </View>
   );
 };
-}
 
 //Estilos industriales con color de acento neon
 const styles = StyleSheet.create({
